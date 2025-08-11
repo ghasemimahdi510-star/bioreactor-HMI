@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Bioreactor HMI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hmi-container">
+        <header class="hmi-header">
+            <h1 class="project-title">Mini Bioreactor HMI</h1>
+        </header>
+
+        <main class="hmi-main-grid">
+            <section class="dashboard-grid">
+                <div class="data-card" id="temp-card">
+                    <div class="card-title">Temperature</div>
+                    <div class="card-value large-value" id="temp-value">-- °C</div>
+                    <div class="card-unit">°C</div>
+                </div>
+                <div class="data-card" id="ph-card">
+                    <div class="card-title">pH</div>
+                    <div class="card-value large-value" id="ph-value">-- pH</div>
+                    <div class="card-unit">pH</div>
+                </div>
+                <div class="data-card" id="do-card">
+                    <div class="card-title">Dissolved Oxygen</div>
+                    <div class="card-value large-value" id="do-value">-- %</div>
+                    <div class="card-unit">% Saturation</div>
+                </div>
+                <div class="data-card" id="rpm-card">
+                    <div class="card-title">Agitator RPM</div>
+                    <div class="card-value large-value" id="rpm-value">-- RPM</div>
+                    <div class="card-unit">RPM</div>
+                </div>
+            </section>
+
+            <section class="controls-and-data">
+                <div class="control-panel panel">
+                    <h2 class="panel-title">System Controls</h2>
+                    <div class="control-group">
+                        <button class="control-btn start-btn" id="start-btn" aria-label="Start Bioreactor">Start</button>
+                        <button class="control-btn stop-btn" id="stop-btn" aria-label="Stop Bioreactor">Stop</button>
+                    </div>
+
+                    <div class="control-group slider-group">
+                        <label for="agitator-slider" class="control-label">Agitator Speed</label>
+                        <div class="slider-with-value">
+                            <input type="range" id="agitator-slider" min="0" max="100" value="0">
+                            <span id="slider-value" class="slider-value">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group switch-group">
+                        <label class="control-label" for="heater-switch">Heater</label>
+                        <div class="switch">
+                            <input type="checkbox" id="heater-switch" class="switch-input" role="switch">
+                            <label for="heater-switch" class="switch-label"></label>
+                        </div>
+                    </div>
+                    <div class="control-group switch-group">
+                        <label class="control-label" for="air-pump-switch">Air Pump</label>
+                        <div class="switch">
+                            <input type="checkbox" id="air-pump-switch" class="switch-input" role="switch">
+                            <label for="air-pump-switch" class="switch-label"></label>
+                        </div>
+                    </div>
+                    <div class="control-group switch-group">
+                        <label class="control-label" for="agitator-switch">Agitator</label>
+                        <div class="switch">
+                            <input type="checkbox" id="agitator-switch" class="switch-input" role="switch">
+                            <label for="agitator-switch" class="switch-label"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-visualization panel">
+                    <h2 class="panel-title">Temperature History</h2>
+                    <div class="chart-container">
+                        <canvas id="temp-chart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="hmi-footer">
+            <div class="network-status-container">
+                <div class="network-info">
+                    <span>IP: <span id="ip-address">192.168.4.1</span></span>
+                    <span>Port: <span id="port-number">81</span></span>
+                </div>
+                <div class="connection-status">
+                    <button id="connect-btn" class="connect-btn">Connect</button>
+                    <span id="connection-indicator" class="status-indicator"></span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
